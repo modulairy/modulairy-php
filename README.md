@@ -5,6 +5,7 @@
 ## Extensions
 - gd
 - zip
+- mysqli
 
 **Root App Folder:** /var/www/html
 
