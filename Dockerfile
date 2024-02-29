@@ -1,4 +1,4 @@
-FROM php:8.2.11-apache
+FROM php:8.3.3-apache
 
 RUN apt-get update && apt-get install -y \
     libfreetype-dev \
