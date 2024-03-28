@@ -1,4 +1,4 @@
-FROM php:8.2.11-apache
+FROM php:8.3.3-apache
 
 RUN apt-get update && apt-get install -y \
     libfreetype-dev \
@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd  && docker-php-ext-install zip \
     && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
-    && docker-php-ext-install pdo_mysql
+    && docker-php-ext-install pdo_mysql  
 
 RUN apt install -y vim
 
