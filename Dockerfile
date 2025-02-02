@@ -10,17 +10,15 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
     && docker-php-ext-install pdo_mysql  
 
+RUN apt install -y git
 RUN apt install -y vim
-
 RUN apt install -y unzip
-
 RUN apt-get install libsodium-dev -y && docker-php-ext-install sodium
-
 RUN apt install -y libgd-dev 
-
 RUN  apt-get install -y libicu-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
+
 
 RUN curl -O https://getcomposer.org/installer && php installer && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
