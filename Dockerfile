@@ -1,12 +1,15 @@
 FROM php:8.3.3-apache
 
+ENV MAKEFLAGS="-j2"
+ENV CXXFLAGS="-O1"
+
 RUN apt-get update && apt-get install -y \
     libfreetype-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
     libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j2 gd  && docker-php-ext-install zip \
+    && docker-php-ext-install gd  && docker-php-ext-install zip \
     && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
     && docker-php-ext-install pdo_mysql  
 
