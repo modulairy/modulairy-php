@@ -1,20 +1,24 @@
-FROM php:8.3.3-apache
+FROM php:8.3.19-apache
 
 ENV MAKEFLAGS="-j2"
 ENV CXXFLAGS="-O1"
 
 RUN apt-get update && apt-get install -y \
-    libfreetype-dev \
+    libfreetype6-dev \
     libjpeg62-turbo-dev \
+    libwebp-dev \
     libpng-dev \
     libzip-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp\
     && docker-php-ext-install gd  && docker-php-ext-install zip \
     && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
     && docker-php-ext-install pdo_mysql  
 
+RUN docker-php-ext-enable zip mysqli 
+
 RUN apt install -y git
 RUN apt install -y vim
+RUN apt install -y curl
 RUN apt install -y unzip
 RUN apt-get install libsodium-dev -y && docker-php-ext-install sodium
 RUN apt install -y libgd-dev 
